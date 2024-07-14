@@ -1,53 +1,28 @@
 import sqlite3
 
 # สร้างการเชื่อมต่อกับฐานข้อมูล
-conn = sqlite3.connect('mydatabase.db')
+conn = sqlite3.connect('room.db')
 
-# สร้าง cursor object
+# สร้างเคอร์เซอร์เพื่อทำการดำเนินการกับฐานข้อมูล
 cursor = conn.cursor()
 
-# สร้างตารางถ้ายังไม่มีอยู่
-cursor.execute('''
-CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    email TEXT NOT NULL UNIQUE
+# คำสั่ง SQL สำหรับสร้างตาราง room
+create_table_query = '''
+CREATE TABLE IF NOT EXISTS room (
+    room_info TEXT,
+    room_id INTEGER PRIMARY KEY,
+    id_customer INTEGER,
+    customer_count INTEGER,
+    bed INTEGER,
+    status_room TEXT,
+    use_status_day INTEGER
 )
-''')
+'''
 
-# เพิ่มข้อมูลถ้าไม่มีข้อมูล
-cursor.execute('''
-INSERT INTO users (name, email)
-VALUES ('John Doe', 'john@example.com')
-''')
+cursor.execute(create_table_query)
 
-# อ่านข้อมูลจากตาราง users
-cursor.execute('SELECT * FROM users')
-users = cursor.fetchall()
-print("Users in the database:")
-for user in users:
-    print(user)
-
-# อัปเดตข้อมูล
-cursor.execute('''
-UPDATE users
-SET name = 'Icesu Doe'
-WHERE id = 1
-''')
-
-# ลบข้อมูล
-cursor.execute('''
-DELETE FROM users
-WHERE id = 1
-''')
-
-# ดูรายชื่อตารางทั้งหมดในฐานข้อมูล
-cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-tables = cursor.fetchall()
-print("Tables in the database:")
-for table in tables:
-    print(table[0])
-
-# ปิดการเชื่อมต่อ
+# ปิดการเชื่อมต่อกับฐานข้อมูล
 conn.commit()
 conn.close()
+
+print("Database and table created successfully.")

@@ -9,25 +9,31 @@ from PyQt5.QtGui import QPixmap
 
 sys.path.append('module/')
 import menu1
-
+import menu2
 
 app = QApplication(sys.argv) #สร้างแอพ
 ui_elements = []
+window = None
 
 def main():
+    global window
     # Function to show message box
     def menu_view():
         clear_ui_elements()
-        menu1.menuna(window,ui_elements)
-    def menu2():
+        menu1.menu_view(window, ui_elements)
+        
+    def menu_edit():
         clear_ui_elements()
-        pass
+        menu2.menu_edit(window, ui_elements)
+        
     def menu3():
         clear_ui_elements()
         pass
+    
     def menu4():
         clear_ui_elements()
         pass
+    
     def menu5():
         clear_ui_elements()
         pass
@@ -36,7 +42,6 @@ def main():
         for element in ui_elements:
             element.setParent(None)
         ui_elements.clear()
-
 
     # Create a main window
     window = QWidget()
@@ -50,44 +55,39 @@ def main():
     frame.setGeometry(0, 0, 300,screen_height)  # Set the position and size of the frame
     frame.setFrameShape(QFrame.StyledPanel)
     frame.setStyleSheet("background-color: lightblue;")
-    
-    # label = QLabel(window)
-    # label.setGeometry(20, 20, 200, 200)  # กำหนดตำแหน่ง (x, y) และขนาด (width, height) ของ QLabel
-    # pixmap = QPixmap('img/name.jpg')  # แทนที่ด้วยเส้นทางไปยังรูปภาพของคุณ
-    # pixmap = pixmap.scaled(200, 200, aspectRatioMode=Qt.KeepAspectRatio)  # Ensure the image fits within the label
-    # label.setPixmap(pixmap)
 
-    # Create a button
-    button_main = QPushButton("Push Me",window)
-    button_main.clicked.connect(menu_view)  
-    button_main.resize(260, 100)  
+    # Create buttons
+    button_main = QPushButton("Push Me", window)
+    button_main.clicked.connect(menu_view)
+    button_main.resize(260, 100)
     button_main.move(20, 170)
     button_main.setStyleSheet(style.button_style())
 
-    button_menu1 = QPushButton("Push Me",window)
-    button_menu1.clicked.connect(menu2)  
-    button_menu1.resize(260, 100)  
+    button_menu1 = QPushButton("Push Me", window)
+    button_menu1.clicked.connect(menu_edit)
+    button_menu1.resize(260, 100)
     button_menu1.move(20, 290)
+    button_menu1.setStyleSheet(style.button_style())
 
-    button_menu2 = QPushButton("Push Me",window)
-    button_menu2.clicked.connect(menu3)  
-    button_menu2.resize(260, 100)  
+    button_menu2 = QPushButton("Push Me", window)
+    button_menu2.clicked.connect(menu3)
+    button_menu2.resize(260, 100)
     button_menu2.move(20, 410)
+    button_menu2.setStyleSheet(style.button_style())
 
-    button_menu3 = QPushButton("Push Me",window)
-    button_menu3.clicked.connect(menu4)  
-    button_menu3.resize(260, 100)  
+    button_menu3 = QPushButton("Push Me", window)
+    button_menu3.clicked.connect(menu4)
+    button_menu3.resize(260, 100)
     button_menu3.move(20, 530)
+    button_menu3.setStyleSheet(style.button_style())
 
-    button_menu4 = QPushButton("Push Me",window)
-    button_menu4.clicked.connect(menu5)  
-    button_menu4.resize(260, 100)  
+    button_menu4 = QPushButton("Push Me", window)
+    button_menu4.clicked.connect(menu5)
+    button_menu4.resize(260, 100)
     button_menu4.move(20, 650)
-
-
+    button_menu4.setStyleSheet(style.button_style())
 
     window.show()
-
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
