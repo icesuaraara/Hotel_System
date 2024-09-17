@@ -57,19 +57,19 @@ def main():
     frame.setStyleSheet("background-color: lightblue;")
 
     # Create buttons
-    button_main = QPushButton("Push Me", window)
+    button_main = QPushButton("Over view room", window)
     button_main.clicked.connect(menu_view)
     button_main.resize(260, 100)
     button_main.move(20, 170)
     button_main.setStyleSheet(style.button_style())
 
-    button_menu1 = QPushButton("Push Me", window)
+    button_menu1 = QPushButton("Manage Room", window)
     button_menu1.clicked.connect(menu_edit)
     button_menu1.resize(260, 100)
     button_menu1.move(20, 290)
     button_menu1.setStyleSheet(style.button_style())
 
-    button_menu2 = QPushButton("Push Me", window)
+    button_menu2 = QPushButton("Cleaning", window)
     button_menu2.clicked.connect(menu3)
     button_menu2.resize(260, 100)
     button_menu2.move(20, 410)
